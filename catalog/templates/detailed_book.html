@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Book</h1>
+    <h2>Author: {{ book.author }}</h2>
+    <h2>Title: {{ book.title }}</h2>
+    <h2>Genre:
+    {% for genre in book.genre.all %}
+        {{ genre.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+    </h2>
+    <br><hr>
+
+
+    <h2>Available copies:</h2>
+    {% for book_instance in book.bookinstance_set.all %}
+        {% if book_instance.status == "Available" %}
+            <h4><a href="{{ book_instance.get_absolute_url }}">{{ book_instance.isbn }} {{ book_instance.language.name }}</a></h4>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
