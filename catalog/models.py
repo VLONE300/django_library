@@ -68,11 +68,12 @@ class BookInstance(models.Model):
     borrower = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     status = models.CharField(choices=STATUSES, max_length=50, default='Available')
+    reservation_start_date = models.DateField(null=True, blank=True)
     due_back = models.DateField(null=True, blank=True)
     isbn = models.CharField(max_length=13)
 
     def __str__(self):
-        return f"{self.status} {self.borrower} {self.book} {self.isbn}"
+        return f" {self.book}  {self.status}  {self.borrower}  {self.isbn}"
 
     def get_absolute_url(self):
         return reverse('book-instance', args=[self.pk])

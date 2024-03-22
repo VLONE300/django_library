@@ -32,7 +32,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
             'fields': ('book', 'isbn', 'language')
         }),
         ('Group 2', {
-            'fields': ('borrower', 'due_back', 'status')
+            'fields': ('borrower', 'reservation_start_date', 'due_back', 'status')
         }),
     )
 

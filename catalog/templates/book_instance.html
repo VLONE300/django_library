@@ -6,5 +6,21 @@
     <h2>Book: {{ bookinstance.book }}</h2>
     <h2>ISBN: {{ bookinstance.isbn }}</h2>
     <h2>Status: {{ bookinstance.status }}</h2>
-    <br><hr>
+    <br>
+    <hr>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if bookinstance.status == 'Available' %}
+        <form method="post">
+            {% csrf_token %}
+            <h1><a href="{% url 'reservation-bookinstance' bookinstance.pk %}">Reservation</a></h1>
+        </form>
+    {% endif %}
 {% endblock %}

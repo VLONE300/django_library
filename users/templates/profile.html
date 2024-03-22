@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>PROFILE</h1>
+    {% for book in book_instance %}
+        <h2>{{ book.book.title }} -- return before {{ book.due_back }}</h2>
+    {% endfor %}
+{% endblock %}
